@@ -1,1 +1,9 @@
-, rate=(100, 60
+fastapi
+sqlmodel
+redis
+psycopg2-binary
+pyjwt
+slowapi
+limiter
+asyncio
+uvicorn
