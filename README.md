@@ -63,3 +63,82 @@
 ## Выполнение запросов к API
 
 Чтобы выполнить запросы к API, необходимо использовать команду `curl` или любое другое ПО для отправки HTTP-запросов.
+
+
+### Регистрация пользователя
+
+* POST-запрос на `/register`: регистрирует нового пользователя.
+```bash
+curl -X 'POST' \
+  http://localhost:8000/register \
+  -H 'Content-Type: application/json' \
+  -d '{"username": "user1", "password": "password1"}'
+```
+
+### Авторизация пользователя
+
+* POST-запрос на `/login`: авторизует пользователя и возвращает JWT-токен.
+```bash
+curl -X 'POST' \
+  http://localhost:8000/login \
+  -H 'Content-Type: application/json' \
+  -d '{"username": "user1", "password": "password1"}'
+```
+
+### Разлогинивание пользователя
+
+* POST-запрос на `/logout`: разлогивает пользователя и удаляет JWT-токен.
+```bash
+curl -X 'POST' \
+  http://localhost:8000/logout \
+  -H 'Authorization: Bearer <JWT-токен>'
+```
+
+### Создание новой задачи
+
+* POST-запрос на `/tasks`: создает новую задачу для текущего пользователя.
+```bash
+curl -X 'POST' \
+  http://localhost:8000/tasks \
+  -H 'Content-Type: application/json' \
+  -d '{"title": "Новая задача", "description": "Описание новой задачи"}'
+  -H 'Authorization: Bearer <JWT-токен>'
+```
+
+### Получение списка всех задач
+
+* GET-запрос на `/tasks`: возвращает список всех задач для текущего пользователя.
+```bash
+curl -X 'GET' \
+  http://localhost:8000/tasks \
+  -H 'Authorization: Bearer <JWT-токен>'
+```
+
+### Получение конкретной задачи
+
+* GET-запрос на `/tasks/{task_id}`: возвращает конкретную задачу для текущего пользователя.
+```bash
+curl -X 'GET' \
+  http://localhost:8000/tasks/1 \
+  -H 'Authorization: Bearer <JWT-токен>'
+```
+
+### Изменение задачи
+
+* PUT-запрос на `/tasks/{task_id}`: изменяет задачу для текущего пользователя.
+```bash
+curl -X 'PUT' \
+  http://localhost:8000/tasks/1 \
+  -H 'Content-Type: application/json' \
+  -d '{"title": "Измененная задача", "description": "Описание измененной задачи"}'
+  -H 'Authorization: Bearer <JWT-токен>'
+```
+
+### Удаление задачи
+
+* DELETE-запрос на `/tasks/{task_id}`: удаляет задачу для текущего пользователя.
+```bash
+curl -X 'DELETE' \
+  http://localhost:8000/tasks/1 \
+  -H 'Authorization: Bearer <JWT-токен>'
+```
